@@ -327,6 +327,7 @@ class Model:
         """
         return self.forward(x)
 
+
     def evaluate(self, x_test, y_test):
         """
         Evaluates the model on the test data.
@@ -336,12 +337,13 @@ class Model:
         y_test (ndarray): Test labels.
 
         Returns:
-        tuple: A tuple containing the loss and accuracy on the test set.
+        tuple: A tuple containing the loss, accuracy and predicted values of the test set.
         """
         y_pred = self.predict(x_test)
         loss = self.loss.forward(y_pred, y_test)
-        accuracy = np.mean(np.argmax(y_pred, axis=0) == np.argmax(y_test, axis=0))
-        return loss, accuracy
+        accuracy = np.mean(np.argmax(y_pred, axis=1) == y_test) * 100
+        y_out = np.argmax(y_pred, axis=1)
+        return loss, accuracy, y_out
 
     def save(self, filepath):
         """
