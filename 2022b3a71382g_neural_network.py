@@ -102,13 +102,13 @@ data = np.array(data)
 m, n = data.shape
 np.random.shuffle(data) # shuffle before splitting into dev and training sets
 
-data_test = data[40000:42000].T
+data_test = data[40000:40020].T
 y_test = data_test[0]
-x_test = data_test[1:2000].T
+x_test = data_test[1:1000].T
 
-data_train = data[0:40000].T
+data_train = data[0:2000].T
 y_train = data_train[0]
-x_train = data_train[1:40000].T
+x_train = data_train[1:2000].T
 
 
 from neural_network_framework import Model, Linear, ReLU, Softmax, CrossEntropyLoss, SGD
@@ -127,8 +127,11 @@ model.compile(loss, optimizer)
 
 # Assume x_train, y_train, x_test, y_test are preprocessed and available
 # Train the model
-model.train(x_train, y_train, epochs=10, batch_size=128)
+model.train(x_train, y_train, epochs=100, batch_size=64)
 
 # Evaluate the model
-test_loss, test_accuracy = model.evaluate(x_test, y_test)
-print(f'Test Loss: {test_loss}, Test Accuracy: {test_accuracy}')
+test_loss, test_accuracy, y_pred = model.evaluate(x_test, y_test)
+print(f'Test Loss: {test_loss}, Test Accuracy: {test_accuracy}%')
+print(y_test)
+print(y_pred)
+
