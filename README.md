@@ -73,8 +73,8 @@ model.train(x_train, y_train, epochs=20, batch_size=64)
 Evaluate the model’s performance on a test dataset.
 
 ```python
-test_loss, test_accuracy = model.evaluate(x_test, y_test)
-print(f'Test Loss: {test_loss}, Test Accuracy: {test_accuracy}')
+test_loss, test_accuracy, y_pred = model.evaluate(x_test, y_test)
+print(f'Test Loss: {test_loss}, Test Accuracy: {test_accuracy}%')
 ```
 
 ## Loading Model Weights
@@ -122,8 +122,8 @@ model.compile(loss, optimizer)
 model.train(x_train, y_train, epochs=20, batch_size=64)
 
 # Evaluate the model
-test_loss, test_accuracy = model.evaluate(x_test, y_test)
-print(f'Test Loss: {test_loss}, Test Accuracy: {test_accuracy}')
+test_loss, test_accuracy, y_pred = model.evaluate(x_test, y_test)
+print(f'Test Loss: {test_loss}, Test Accuracy: {test_accuracy}%')
 
 # Save the model weights
 model.save('model_weights.npy')
